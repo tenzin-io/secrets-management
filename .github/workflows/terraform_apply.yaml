@@ -31,6 +31,6 @@ jobs:
         run: terraform validate -no-color
 
       - name: Run Terraform Apply
-        run: terraform apply -no-color
+        run: terraform apply -no-color -auto-approve
         env:
           TF_VAR_private_key: ${{ secrets.PRIVATE_KEY }}
