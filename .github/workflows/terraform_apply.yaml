@@ -7,9 +7,6 @@ permissions:
   id-token: write
   contents: read
   
-env:
-  TF_VAR_private_key: ${{ secrets.PRIVATE_KEY }}
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -35,3 +32,5 @@ jobs:
 
       - name: Run Terraform Apply
         run: terraform apply -no-color
+        env:
+          TF_VAR_private_key: ${{ secrets.PRIVATE_KEY }}
