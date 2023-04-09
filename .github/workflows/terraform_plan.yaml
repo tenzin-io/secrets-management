@@ -38,3 +38,4 @@ jobs:
         run: terraform plan -no-color
         env:
           TF_VAR_private_key: ${{ secrets.PRIVATE_KEY }}
+          TF_VAR_tenzin_io_github_app_key: ${{ secrets.TENZIN_IO_GITHUB_APP_KEY }}
