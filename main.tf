@@ -11,9 +11,10 @@ provider "aws" {
   region = "us-east-1"
 }
 
-resource "aws_ssm_parameter" "private_key" {
-  name        = "/homelab/private_key"
-  description = "The private key to access my home lab machines."
+resource "aws_ssm_parameter" "secrets" {
+  for_each    = local.secrets
   type        = "SecureString"
-  value       = var.private_key
+  name        = "/homelab/${each.key}"
+  description = each.value.description
+  value       = each.value.content
 }
