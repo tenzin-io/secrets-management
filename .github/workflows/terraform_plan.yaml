@@ -37,7 +37,9 @@ jobs:
           echo ${{ secrets.GH_APP_INSTALLATION_ID }} > files/github_app_installation_id
           echo ${{ secrets.CLOUDFLARE_API_TOKEN }} > files/cloudflare_api_token
           echo ${{ secrets.CLOUDFLARE_ZONE_ID }} > files/cloudflare_zone_id
- 
+          echo ${{ secrets.CLOUDFLARE_API_EMAIL }} > files/cloudflare_api_email
+          echo ${{ secrets.CLOUDFLARE_API_KEY }} > files/cloudflare_api_key
+
       - name: Run Terraform Init
         run: terraform init
         

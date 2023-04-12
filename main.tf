@@ -52,3 +52,17 @@ resource "aws_ssm_parameter" "cloudflare_zone_id" {
   value       = file("files/cloudflare_zone_id")
   description = "My Cloudflare zone id for tenzin.io DNS"
 }
+
+resource "aws_ssm_parameter" "cloudflare_api_key" {
+  type        = "SecureString"
+  name        = "/homelab/cloudflare_api_key"
+  value       = file("files/cloudflare_api_key")
+  description = "My Cloudflare API key for tenzin.io DNS"
+}
+
+resource "aws_ssm_parameter" "cloudflare_api_email" {
+  type        = "SecureString"
+  name        = "/homelab/cloudflare_api_email"
+  value       = file("files/cloudflare_api_email")
+  description = "My Cloudflare API email for tenzin.io DNS"
+}
