@@ -24,7 +24,15 @@ jobs:
         with:
           role-to-assume: ${{ vars.AWS_ROLE_TO_ASSUME }}
           aws-region: us-east-1
-          
+
+      - name: Setup secrets
+        run: |
+          echo ${{ secrets.SSH_PRIVATE_KEY }} > files/ssh_private_key
+          echo ${{ secrets.GH_APP_ID }} > files/github_app_id
+          echo ${{ secrets.GH_APP_PRIVATE_KEY }} > files/github_app_private_key
+          echo ${{ secrets.GH_APP_INSTALLATION_ID }} > files/github_app_installation_id
+          echo ${{ secrets.CLOUDFLARE_API_TOKEN }} > files/cloudflare_api_token
+
       - name: Run Terraform Init
         run: terraform init
         
@@ -36,6 +44,3 @@ jobs:
 
       - name: Run Terraform Plan
         run: terraform plan -no-color
-        env:
-          TF_VAR_private_key: ${{ secrets.PRIVATE_KEY }}
-          TF_VAR_tenzin_io_github_app_key: ${{ secrets.TENZIN_IO_GITHUB_APP_KEY }}

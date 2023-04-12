@@ -11,10 +11,37 @@ provider "aws" {
   region = "us-east-1"
 }
 
-resource "aws_ssm_parameter" "secrets" {
-  for_each    = local.secrets
+resource "aws_ssm_parameter" "ssh_private_key" {
   type        = "SecureString"
-  name        = "/homelab/${each.key}"
-  description = each.value.description
-  value       = each.value.content
+  name        = "/homelab/ssh_private_key"
+  value       = file("files/ssh_private_key")
+  description = "My home lab SSH private key"
+}
+
+resource "aws_ssm_parameter" "github_app_private_key" {
+  type        = "SecureString"
+  name        = "/homelab/github_app_private_key"
+  value       = file("files/github_app_private_key")
+  description = "My tenzin.io GitHub app's private key"
+}
+
+resource "aws_ssm_parameter" "github_app_id" {
+  type        = "SecureString"
+  name        = "/homelab/github_app_id"
+  value       = file("files/github_app_id")
+  description = "My tenzin.io GitHub app's id"
+}
+
+resource "aws_ssm_parameter" "github_app_installation_id" {
+  type        = "SecureString"
+  name        = "/homelab/github_app_installation_id"
+  value       = file("files/github_app_installation_id")
+  description = "My tenzin.io GitHub app's installation id"
+}
+
+resource "aws_ssm_parameter" "cloudflare_api_token" {
+  type        = "SecureString"
+  name        = "/homelab/cloudflare_api_token"
+  value       = file("files/cloudflare_api_token")
+  description = "My Cloudflare API token for tenzin.io DNS"
 }
