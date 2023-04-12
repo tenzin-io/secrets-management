@@ -45,3 +45,10 @@ resource "aws_ssm_parameter" "cloudflare_api_token" {
   value       = file("files/cloudflare_api_token")
   description = "My Cloudflare API token for tenzin.io DNS"
 }
+
+resource "aws_ssm_parameter" "cloudflare_zone_id" {
+  type        = "SecureString"
+  name        = "/homelab/cloudflare_zone_id"
+  value       = file("files/cloudflare_zone_id")
+  description = "My Cloudflare zone id for tenzin.io DNS"
+}
