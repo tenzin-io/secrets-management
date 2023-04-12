@@ -26,13 +26,17 @@ jobs:
           aws-region: us-east-1
 
       - name: Setup secrets
-        run: |
-          echo ${{ secrets.SSH_PRIVATE_KEY }} > files/ssh_private_key
+        run: |-
+          cat <<'eof' > files/ssh_private_key
+          ${{ secrets.SSH_PRIVATE_KEY }}
+          eof
+          cat <<'eof' > files/github_app_private_key
+          ${{ secrets.GH_APP_PRIVATE_KEY }}
+          eof
           echo ${{ secrets.GH_APP_ID }} > files/github_app_id
-          echo ${{ secrets.GH_APP_PRIVATE_KEY }} > files/github_app_private_key
           echo ${{ secrets.GH_APP_INSTALLATION_ID }} > files/github_app_installation_id
           echo ${{ secrets.CLOUDFLARE_API_TOKEN }} > files/cloudflare_api_token
-
+ 
       - name: Run Terraform Init
         run: terraform init
         
