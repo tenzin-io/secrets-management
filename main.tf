@@ -66,3 +66,10 @@ resource "aws_ssm_parameter" "cloudflare_api_email" {
   value       = file("files/cloudflare_api_email")
   description = "My Cloudflare API email for tenzin.io DNS"
 }
+
+resource "aws_ssm_parameter" "tailscale_auth_key" {
+  type        = "SecureString"
+  name        = "/homelab/tailscale_auth_key"
+  value       = file("files/tailscale_auth_key")
+  description = "My Tailscale auth key to join machines to my tailnet"
+}

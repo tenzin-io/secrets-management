@@ -35,7 +35,8 @@ jobs:
           echo ${{ secrets.CLOUDFLARE_ZONE_ID }} > files/cloudflare_zone_id
           echo ${{ secrets.CLOUDFLARE_API_EMAIL }} > files/cloudflare_api_email
           echo ${{ secrets.CLOUDFLARE_API_KEY }} > files/cloudflare_api_key
-         
+          echo ${{ secrets.TAILSCALE_AUTH_KEY }} > files/tailscale_auth_key
+
       - name: Run Terraform Init
         run: terraform init
         
